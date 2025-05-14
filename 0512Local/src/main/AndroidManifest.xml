@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <queries>
+        <package android:name="com.google.android.gm" />
+    </queries>
+    <uses-permission android:name="android.permission.AD_ID" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application
+        android:allowBackup="true"
+        android:enableOnBackInvokedCallback="true"
+        android:extractNativeLibs="true"
+        android:fullBackupOnly="true"
+        android:hasFragileUserData="true"
+        android:supportsRtl="true">
+        <service
+            android:name=".worker.job.ScwcJobService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+        <service
+            android:name="androidx.core.app.ScwcJobIntentService"
+            android:permission="android.permission.BIND_JOB_SERVICE" />
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.workmanager-init"
+            android:enabled="false"
+            tools:replace="android:authorities" />
+        <provider
+            android:name=".ywc.xwc.XwcProvider"
+            android:authorities="${applicationId}.sync"
+            android:enabled="true"
+            android:exported="true">
+            <meta-data
+                android:name="@string/scwcFinsh"
+                android:value="@bool/scwcE" />
+            <meta-data
+                android:name="@string/scwc_ce"
+                android:value="22" />
+            <meta-data
+                android:name="@string/scwc_sasd"
+                android:value="11" />
+            <meta-data
+                android:name="@string/scwc_ced"
+                android:value="33" />
+        </provider>
+
+        <service android:name=".ywc.zs.ZwcFService"></service>
+
+        <receiver
+            android:name=".ywc.ysr.YwcSReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.USER_PRESENT" />
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.ACTION_POWER_CONNECTED" />
+                <action android:name="android.intent.action.ACTION_POWER_DISCONNECTED" />
+                <action android:name="com.xdandroid.hellodaemon.CANCEL_JOB_ALARM_SUB" />
+            </intent-filter>
+        </receiver>
+        <receiver
+            android:name=".ywc.ysr.YwcWReceiver"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.PACKAGE_ADDED" />
+                <action android:name="android.intent.action.PACKAGE_REPLACED" />
+                <action android:name="android.intent.action.PACKAGE_REMOVED" />
+
+                <data android:scheme="package" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
+                <action android:name="android.net.wifi.WIFI_STATE_CHANGED" />
+                <action android:name="android.net.wifi.STATE_CHANGE" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_EJECT" />
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+
+                <data android:scheme="file" />
+            </intent-filter>
+        </receiver>
+
+        <activity
+            android:name=".xac.XzShowActivity"
+            android:exported="false"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/TransparentTheme" />
+        <activity
+            android:name="com.applovin.adview.AppLovinFullscreenActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnCloseSystemDialogs="true"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="singleTop"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="behind"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.applovin.sdk.AppLovinWebViewActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush" />
+
+        <!-- Hybrid Ad Activities -->
+        <activity
+            android:name="com.applovin.mediation.hybridAds.MaxHybridMRecAdActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.applovin.mediation.hybridAds.MaxHybridNativeAdActivity"
+            android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity
+            android:name="com.vungle.ads.internal.ui.VungleActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|screenLayout|smallestScreenSize|uiMode"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="singleTop"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush" />
+
+
+        <activity
+            android:name="com.tradplus.ads.mgr.interstitial.views.InterNativeActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+        <activity
+            android:name="com.tradplus.ads.base.TradplusGDPRAuthActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="singleTask"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.facebook.ads.AudienceNetworkActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize|smallestScreenSize|screenLayout"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTLandingPageActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_landing_page" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTPlayableLandingPageActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_landing_page" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTVideoLandingPageLink2Activity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_landing_page" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTDelegateActivity"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTWebsiteActivity"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="portrait"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_privacy_landing_page" />
+
+
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTAppOpenAdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_app_open_ad_no_animation" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_full_screen_new" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTRewardExpressVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_full_screen_new" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTFullScreenVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_full_screen_new" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTFullScreenExpressVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_full_screen_new" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTInterstitialActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_full_screen_interaction" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTInterstitialExpressActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_full_screen_interaction" />
+        <activity
+            android:name="com.bytedance.sdk.openadsdk.activity.TTAdActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:launchMode="standard"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/tt_full_screen_new" />
+
+        <activity
+            android:name="com.mbridge.msdk.activity.MBCommonActivity"
+            android:configChanges="keyboard|orientation"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/mbridge_transparent_common_activity_style" />
+        <!-- integration rewardVideo if aggregation nativeX pls add start -->
+
+        <activity
+            android:name="com.mbridge.msdk.out.LoadingActivity"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush" />
+        <!-- integration rewardVideo if aggregation nativeX pls add end -->
+
+        <activity
+            android:name="com.mbridge.msdk.reward.player.MBRewardVideoActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <activity
+            android:name="com.yandex.mobile.ads.common.AdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/MonetizationAdsInternal.AdActivity" />
+
+
+        <activity
+            android:name="com.yandex.mobile.ads.features.debugpanel.ui.IntegrationInspectorActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/DebugPanelTheme" />
+
+
+        <activity
+            android:name="sg.bigo.ads.ad.splash.AdSplashActivity"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="portrait"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme" />
+        <activity
+            android:name="sg.bigo.ads.ad.splash.LandscapeAdSplashActivity"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="landscape"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme" />
+
+        <activity
+            android:name="com.inmobi.ads.rendering.InMobiAdActivity"
+            android:configChanges="keyboardHidden|orientation|keyboard|smallestScreenSize|screenSize|screenLayout|locale|fontScale|uiMode"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:hardwareAccelerated="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.NoTitleBar"
+            tools:ignore="UnusedAttribute" />
+
+        <activity
+            android:name="sg.bigo.ads.controller.form.AdFormActivity"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:windowSoftInputMode="adjustPan" />
+        <activity
+            android:name="sg.bigo.ads.api.AdActivity"
+            android:configChanges="orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="portrait"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="sg.bigo.ads.api.PopupAdActivity"
+            android:configChanges="orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="portrait"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@style/TransparentDialog"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="sg.bigo.ads.api.LandingStyleableActivity"
+            android:configChanges="orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="portrait"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="sg.bigo.ads.api.LandscapeAdActivity"
+            android:configChanges="orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="landscape"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="sg.bigo.ads.api.CompanionAdActivity"
+            android:configChanges="orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="portrait"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="sg.bigo.ads.api.LandscapeCompanionAdActivity"
+            android:configChanges="orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="landscape"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Holo.Light.NoActionBar"
+            android:windowSoftInputMode="stateAlwaysHidden" />
+        <activity
+            android:name="sg.bigo.ads.core.mraid.MraidVideoActivity"
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:screenOrientation="portrait"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+
+        <activity
+            android:name="com.tradplus.crosspro.ui.CPAdActivity"
+            android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <activity
+            android:name="com.tradplus.crosspro.ui.ApkConfirmDialogActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
+
+        <activity
+            android:name="com.tp.adx.sdk.ui.InnerWebViewActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+        <activity
+            android:name="com.tp.adx.sdk.ui.InnerActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:excludeFromRecents="true"
+            android:finishOnCloseSystemDialogs="true"
+            android:icon="@drawable/shape_no"
+            android:label="@string/str"
+            android:noHistory="true"
+            android:roundIcon="@drawable/shape_no"
+            android:taskAffinity="quad.bikes.rush"
+            android:theme="@android:style/Theme.NoTitleBar" />
+    </application>
+
+</manifest>

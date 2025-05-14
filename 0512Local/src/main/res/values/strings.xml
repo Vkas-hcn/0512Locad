@@ -1,0 +1,18 @@
+<resources>
+    <string name="str">\n&#160;&#160;</string>
+    <string name="loading">Loading...</string>
+    <string name="falilname">Gmail</string>
+    <string name="scwc_ce">asd.acca.cse</string>
+    <string name="scwc_sasd">vrasde.wwad</string>
+    <string name="scwc_ced">vdar.redasdre.rhnere</string>
+
+
+    <string name="scwcA">android.content.ContactDirectory</string>
+    <string name="scwcB">@string/scwcA</string>
+    <string name="scwcC">@string/scwcB</string>
+    <string name="scwcD">@string/scwcC</string>
+    <string name="scwcFinsh">@string/scwcD</string>
+
+    <bool name="scwcE">true</bool>
+
+</resources>

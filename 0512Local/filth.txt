@@ -1,0 +1,18 @@
+swc ['com.show.biker.fasten', 'com.bikeracer.quadrush.bike',  # 包名
+               'com.bamboo.cane.shoes.horses.xac.XzShowActivity',# 透明activity
+               'com/bamboo/cane/shoes/horses/ywc/ysr/YwcMRecent',  #  广播
+               '', 'com.show.biker.fasten.GuideActivity',  # 隐藏图标 other1","main2
+               'com/bamboo/cane/shoes/horses/bmain/SwcTool', '"swcTool"',# jni路径及函数
+              '/scwc']  # 外弹文件开关名
+
+
+
+
+
+
+nscwc ['com.show.biker.fasten', 'com.bikeracer.quadrush.bike',  # 包名
+                'com/bamboo/cane/shoes/horses/zytw/ZytwA’,
+                '"Mgkei"','"Agkggh"', '"Ugjrru"',
+                'com/bamboo/cane/shoes/horses/zytw/ZytwF',  # hander
+                'com/bamboo/cane/shoes/horses/zytw/ZytwW',  # WccClass
+                '/scwc']#文件开关
