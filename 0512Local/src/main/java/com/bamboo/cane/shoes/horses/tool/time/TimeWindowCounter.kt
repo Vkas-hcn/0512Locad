@@ -1,7 +1,7 @@
 package com.bamboo.cane.shoes.horses.tool.time
 
 import android.content.SharedPreferences
-import com.bamboo.cane.shoes.horses.bmain.jian.GameStart
+import com.bamboo.cane.shoes.horses.bmain.jian.BikerStart
 import java.text.SimpleDateFormat
 import java.util.Date
 
@@ -34,7 +34,7 @@ class TimeWindowCounter(
             resetCounter()
             return true
         }
-        GameStart.showLog("$keyPrefix=$count ----MAX_=$maxCount")
+        BikerStart.showLog("$keyPrefix=$count ----MAX_=$maxCount")
         if (count >= maxCount) return false
         return true
     }

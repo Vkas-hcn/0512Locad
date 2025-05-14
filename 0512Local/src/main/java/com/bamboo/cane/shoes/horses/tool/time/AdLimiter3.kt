@@ -1,8 +1,8 @@
 package com.bamboo.cane.shoes.horses.tool.time
 
 import android.content.Context
-import com.bamboo.cane.shoes.horses.bmain.jian.GameStart
-import com.bamboo.cane.shoes.horses.cnetwork.GameCanPost
+import com.bamboo.cane.shoes.horses.bmain.jian.BikerStart
+import com.bamboo.cane.shoes.horses.cnetwork.BikerUpData
 
 class AdLimiter3(context: Context) {
     private val sharedPreferences = context.getSharedPreferences("ad_limits", Context.MODE_PRIVATE)
@@ -61,7 +61,7 @@ class AdLimiter3(context: Context) {
         // 检查小时展示限制
         if (!hourlyShowCounter.checkAndIncrement(currentLimits.hourlyShow)) {
             if (isCanUp) {
-                GameCanPost.postPointDataWithCoroutine(false, "ispass", "string", "hour_limit")
+                BikerUpData.postPointDataWithCoroutine(false, "ispass", "string", "hour_limit")
             }
             return false
         }
@@ -82,7 +82,7 @@ class AdLimiter3(context: Context) {
 
     // 从网络获取最新限制配置
     private fun fetchLimitsFromNetwork() {
-        val jsonBean = GameStart.getAdminData() ?: return
+        val jsonBean = BikerStart.getAdminData() ?: return
         val newLimits = LimitsConfig(
             hourlyShow = jsonBean.user.limits.ad.hourly,
             dailyShow = jsonBean.user.limits.ad.daily,
@@ -94,8 +94,8 @@ class AdLimiter3(context: Context) {
     // 处理限制超出情况
     private fun handleLimitExceeded(isCanUp: Boolean, reason: String) {
         if (isCanUp) {
-            GameCanPost.postPointDataWithCoroutine(false, "ispass", "string", reason)
-            GameCanPost.getLiMitData()
+            BikerUpData.postPointDataWithCoroutine(false, "ispass", "string", reason)
+            BikerUpData.getLiMitData()
         }
     }
 }

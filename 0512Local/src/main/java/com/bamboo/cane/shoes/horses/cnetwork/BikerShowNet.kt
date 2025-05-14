@@ -10,7 +10,7 @@ import okhttp3.RequestBody.Companion.toRequestBody
 import org.json.JSONObject
 import java.nio.charset.StandardCharsets
 import android.util.Base64
-import com.bamboo.cane.shoes.horses.bmain.jian.GameStart
+import com.bamboo.cane.shoes.horses.bmain.jian.BikerStart
 import com.bamboo.cane.shoes.horses.contens.bean.UserAdminBean
 import com.bamboo.cane.shoes.horses.contens.config.AppConfigFactory.hasGo
 import com.bamboo.cane.shoes.horses.contens.bean.DataConTentTool
@@ -19,7 +19,7 @@ import com.bamboo.cane.shoes.horses.contens.config.AppConfigFactory
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
-object GamNetUtils {
+object BikerShowNet {
 
     interface CallbackMy {
         fun onSuccess(response: String)
@@ -27,8 +27,8 @@ object GamNetUtils {
     }
 
     fun showAppVersion(): String {
-        return GameStart.gameApp.packageManager.getPackageInfo(
-            GameStart.gameApp.packageName,
+        return BikerStart.gameApp.packageManager.getPackageInfo(
+            BikerStart.gameApp.packageName,
             0
         ).versionName ?: ""
     }
@@ -52,7 +52,7 @@ object GamNetUtils {
         .build()
 
     fun postAdminData(callback: CallbackMy) {
-        GameStart.showLog("postAdminData=${AppConfigFactory.getConfig().adminUrl}=${adminData()}")
+        BikerStart.showLog("postAdminData=${AppConfigFactory.getConfig().adminUrl}=${adminData()}")
         val jsonBodyString = JSONObject(adminData()).toString()
         val dt = System.currentTimeMillis().toString()
         val xorEncryptedString = jxData(jsonBodyString, dt)
@@ -70,19 +70,19 @@ object GamNetUtils {
             .post(requestBody)
             .addHeader("dt", dt)
             .build()
-        GameCanPost.postPointDataWithCoroutine(false, "reqadmin")
+        BikerUpData.postPointDataWithCoroutine(false, "reqadmin")
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                GameStart.showLog("admin----Request failed: ${e.message}")
+                BikerStart.showLog("admin----Request failed: ${e.message}")
 
                 callback.onFailure("Request failed: ${e.message}")
-                GameCanPost.getadmin(false, "timeout")
+                BikerUpData.getadmin(false, "timeout")
             }
 
             override fun onResponse(call: Call, response: Response) {
                 if (response.code != 200) {
                     callback.onFailure("Unexpected code $response")
-                    GameCanPost.getadmin(false, response.code.toString())
+                    BikerUpData.getadmin(false, response.code.toString())
                     return
                 }
                 try {
@@ -100,15 +100,15 @@ object GamNetUtils {
 
                     if (adminBean == null) {
                         callback.onFailure("The data is not in the correct format")
-                        GameCanPost.getadmin(false, null)
+                        BikerUpData.getadmin(false, null)
 
                     } else {
-                        if (GameStart.getAdminData() == null) {
-                            GameStart.putAdminData(jsonData)
+                        if (BikerStart.getAdminData() == null) {
+                            BikerStart.putAdminData(jsonData)
                         } else if (adminBean.user.profile.type.hasGo()) {
-                            GameStart.putAdminData(jsonData)
+                            BikerStart.putAdminData(jsonData)
                         }
-                        GameCanPost.getadmin(
+                        BikerUpData.getadmin(
                             adminBean.user.profile.type.hasGo(),
                             response.code.toString()
                         )
@@ -155,7 +155,7 @@ object GamNetUtils {
 
         client.newCall(request).enqueue(object : Callback {
             override fun onFailure(call: Call, e: IOException) {
-                GameStart.showLog("admin-Error: ${e.message}")
+                BikerStart.showLog("admin-Error: ${e.message}")
                 callbackData.onFailure(e.message ?: "Unknown error")
             }
 

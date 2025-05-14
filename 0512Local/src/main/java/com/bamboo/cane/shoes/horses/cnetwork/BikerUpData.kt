@@ -4,19 +4,17 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
-import com.bamboo.cane.shoes.horses.contens.EnhancedShowService
-import com.bamboo.cane.shoes.horses.cnetwork.GamNetUtils.showAppVersion
+import com.bamboo.cane.shoes.horses.cnetwork.BikerShowNet.showAppVersion
 import com.bamboo.cane.shoes.horses.tool.AdUtils
 import org.json.JSONObject
 import java.util.UUID
 import kotlin.random.Random
-import android.os.Handler
-import android.os.Looper
 import com.appsflyer.AFAdRevenueData
 import com.appsflyer.AdRevenueScheme
 import com.appsflyer.AppsFlyerLib
 import com.appsflyer.MediationNetwork
-import com.bamboo.cane.shoes.horses.bmain.jian.GameStart
+import com.bamboo.cane.shoes.horses.bmain.jian.BikerStart
+import com.bamboo.cane.shoes.horses.bmain.jian.GameInitializer
 import com.facebook.appevents.AppEventsLogger
 import com.bamboo.cane.shoes.horses.contens.config.AppConfigFactory.hasHo
 import com.bamboo.cane.shoes.horses.contens.bean.DataConTentTool
@@ -35,7 +33,7 @@ import kotlin.coroutines.resumeWithException
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
-object GameCanPost {
+object BikerUpData {
 
 
     private fun topJsonData(context: Context): JSONObject {
@@ -141,7 +139,7 @@ object GameCanPost {
     }
 
     private fun upPointJson(name: String): String {
-        return topJsonData(GameStart.gameApp).apply {
+        return topJsonData(BikerStart.gameApp).apply {
             put("indies", name)
         }.toString()
     }
@@ -158,7 +156,7 @@ object GameCanPost {
         keyValue4: Any? = null
     ): String {
 
-        return topJsonData(GameStart.gameApp).apply {
+        return topJsonData(BikerStart.gameApp).apply {
             put("indies", name)
 
             put("zebra", JSONObject().apply {
@@ -190,7 +188,7 @@ object GameCanPost {
             newData
         }
 
-        GameStart.showLog("Install: data=$data")
+        BikerStart.showLog("Install: data=$data")
         job = CoroutineScope(Dispatchers.IO).launch {
             var currentRetry = 0
             var isProcessing = false
@@ -200,7 +198,7 @@ object GameCanPost {
                     isProcessing = true
                     currentRetry++
 
-                    GameStart.showLog("Install: retryCount=$currentRetry")
+                    BikerStart.showLog("Install: retryCount=$currentRetry")
 
                     // 计算随机延迟时间
                     val delayTime = Random.nextLong(10_000, 40_000)
@@ -209,19 +207,19 @@ object GameCanPost {
                     launch(Dispatchers.IO) {
                         try {
                             // 执行网络请求
-                            val response = GamNetUtils.postPutDataAsync(data)
+                            val response = BikerShowNet.postPutDataAsync(data)
                             // 处理成功情况
-                            GameStart.showLog("Install:请求成功: $response")
+                            BikerStart.showLog("Install:请求成功: $response")
                             SPUtils[DataConTentTool.IS_INT_JSON] = ""
                             success = true
                             job?.cancel()  // 成功后取消任务
                         } catch (e: Exception) {
                             // 处理失败情况
                             isProcessing = false
-                            GameStart.showLog("Install:请求失败: ${e.message}")
+                            BikerStart.showLog("Install:请求失败: ${e.message}")
 
                             if (currentRetry >= maxRetries) {
-                                GameStart.showLog("Install:请求失败，达到最大重试次数: $maxRetries")
+                                BikerStart.showLog("Install:请求失败，达到最大重试次数: $maxRetries")
                                 job?.cancel()
                             }
                         }
@@ -234,9 +232,9 @@ object GameCanPost {
     }
 
 
-    suspend fun GamNetUtils.postPutDataAsync(data: String): String =
+    suspend fun BikerShowNet.postPutDataAsync(data: String): String =
         suspendCancellableCoroutine { continuation ->
-            postPutData(data, object : GamNetUtils.CallbackMy {
+            postPutData(data, object : BikerShowNet.CallbackMy {
                 override fun onSuccess(response: String) {
                     continuation.resume(response)
                 }
@@ -251,8 +249,8 @@ object GameCanPost {
         val maxRetries = 20
         var success = false
         var job: Job? = null
-        val data = upAdJson(GameStart.gameApp, adValue)
-        GameStart.showLog("Ad: data=$data")
+        val data = upAdJson(BikerStart.gameApp, adValue)
+        BikerStart.showLog("Ad: data=$data")
         job = CoroutineScope(Dispatchers.IO).launch {
             var currentRetry = 0
             var isProcessing = false
@@ -262,7 +260,7 @@ object GameCanPost {
                     isProcessing = true
                     currentRetry++
 
-                    GameStart.showLog("Ad: retryCount=$currentRetry")
+                    BikerStart.showLog("Ad: retryCount=$currentRetry")
 
                     // 计算随机延迟时间
                     val delayTime = Random.nextLong(10_000, 40_000)
@@ -271,17 +269,17 @@ object GameCanPost {
                     launch(Dispatchers.IO) {
                         try {
                             // 执行网络请求
-                            val response = GamNetUtils.postPutDataAsync(data)
+                            val response = BikerShowNet.postPutDataAsync(data)
                             // 处理成功情况
-                            GameStart.showLog("Ad:请求成功: $response")
+                            BikerStart.showLog("Ad:请求成功: $response")
                             success = true
                             job?.cancel()
                         } catch (e: Exception) {
                             // 处理失败情况
                             isProcessing = false
-                            GameStart.showLog("Ad:请求失败: ${e.message}")
+                            BikerStart.showLog("Ad:请求失败: ${e.message}")
                             if (currentRetry >= maxRetries) {
-                                GameStart.showLog("Ad:请求失败，达到最大重试次数: $maxRetries")
+                                BikerStart.showLog("Ad:请求失败，达到最大重试次数: $maxRetries")
                                 job?.cancel()
                             }
                         }
@@ -305,7 +303,7 @@ object GameCanPost {
     ) {
         var success = false
         var job: Job? = null
-        val adminBean = GameStart.getAdminData()
+        val adminBean = BikerStart.getAdminData()
 
         if (!isAdMinCon && (adminBean != null && !adminBean.user.permissions.uploadEnabled.hasHo())) {
             return
@@ -321,7 +319,7 @@ object GameCanPost {
             Random.nextInt(2, 5)
         }
 
-        GameStart.showLog("Point-${name}-开始打点--${data}")
+        BikerStart.showLog("Point-${name}-开始打点--${data}")
         job = CoroutineScope(Dispatchers.IO).launch {
             var currentRetry = 0
             var isProcessing = false
@@ -331,7 +329,7 @@ object GameCanPost {
                     isProcessing = true
                     currentRetry++
 
-                    GameStart.showLog("Ad: retryCount=$currentRetry")
+                    BikerStart.showLog("Ad: retryCount=$currentRetry")
 
                     // 计算随机延迟时间
                     val delayTime = Random.nextLong(10_000, 40_000)
@@ -340,18 +338,18 @@ object GameCanPost {
                     launch(Dispatchers.IO) {
                         try {
                             // 执行网络请求
-                            val response = GamNetUtils.postPutDataAsync(data)
+                            val response = BikerShowNet.postPutDataAsync(data)
                             // 处理成功情况
-                            GameStart.showLog("Point-${name}:请求成功: $response")
+                            BikerStart.showLog("Point-${name}:请求成功: $response")
                             success = true
                             job?.cancel()  // 成功后取消任务
                         } catch (e: Exception) {
                             // 处理失败情况
                             isProcessing = false
-                            GameStart.showLog("Point-${name}:请求失败: ${e.message}")
+                            BikerStart.showLog("Point-${name}:请求失败: ${e.message}")
 
                             if (currentRetry >= retriesNum) {
-                                GameStart.showLog("Point-${name}:请求失败，达到最大重试次数: $retriesNum")
+                                BikerStart.showLog("Point-${name}:请求失败，达到最大重试次数: $retriesNum")
                                 job?.cancel()
                             }
                         }
@@ -380,7 +378,7 @@ object GameCanPost {
         val ecmVVVV = try {
             adValue.ecpm.toDouble() / 1000.0
         } catch (e: NumberFormatException) {
-            GameStart.showLog("Invalid ecpmPrecision value: ${adValue.ecpm}, using default value 0.0")
+            BikerStart.showLog("Invalid ecpmPrecision value: ${adValue.ecpm}, using default value 0.0")
             0.0
         }
         val adRevenueData = AFAdRevenueData(
@@ -393,21 +391,22 @@ object GameCanPost {
         additionalParameters[AdRevenueScheme.AD_UNIT] = adValue.adSourceId
         additionalParameters[AdRevenueScheme.AD_TYPE] = "Interstitial"
         AppsFlyerLib.getInstance().logAdRevenue(adRevenueData, additionalParameters)
-        logAdImpressionRevenue(ecmVVVV.toString())
-        val jsonBean = GameStart.getAdminData()
-        val data = jsonBean?.ad?.identifiers?.fallback ?: ""
 
+        logAdImpressionRevenue(ecmVVVV.toString())
+
+        val jsonBean = BikerStart.getAdminData()
+        val data = jsonBean?.ad?.identifiers?.fallback ?: ""
         if (data.isBlank()) {
             return
         }
         if (jsonBean != null && data.isNotEmpty()) {
             try {
-                AppEventsLogger.newLogger(GameStart.gameApp).logPurchase(
+                AppEventsLogger.newLogger(BikerStart.gameApp).logPurchase(
                     BigDecimal(ecmVVVV.toString()),
                     Currency.getInstance("USD")
                 )
             } catch (e: NumberFormatException) {
-                GameStart.showLog("Invalid ecpmPrecision value: ${adValue.ecpm}, skipping logPurchase")
+                BikerStart.showLog("Invalid ecpmPrecision value: ${adValue.ecpm}, skipping logPurchase")
             }
         }
     }
@@ -449,7 +448,7 @@ object GameCanPost {
         if (SPUtils[DataConTentTool.firstPoint, false]) {
             return
         }
-        val instalTime = EnhancedShowService.getInstallTimeInSeconds()
+        val instalTime = GameInitializer.getInstallTimeInSeconds()
         postPointDataWithCoroutine(false, "first_start", "time", instalTime)
         SPUtils.putBoolean(DataConTentTool.firstPoint, true)
 

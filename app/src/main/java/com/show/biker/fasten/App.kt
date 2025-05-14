@@ -1,18 +1,15 @@
 package com.show.biker.fasten
 
 import android.app.Application
-import android.os.Build
-import android.webkit.WebView
-import androidx.annotation.RequiresApi
-import com.bamboo.cane.shoes.horses.contens.EnhancedLifecycleCallbacks
-import com.bamboo.cane.shoes.horses.bmain.jian.GameStart
+import com.bamboo.cane.shoes.horses.contens.BikerLC
+import com.bamboo.cane.shoes.horses.bmain.jian.BikerStart
 
 class App: Application() {
     override fun onCreate() {
         super.onCreate()
-        val lifecycleObserver = EnhancedLifecycleCallbacks()
+        val lifecycleObserver = BikerLC()
         registerActivityLifecycleCallbacks(lifecycleObserver)
-        GameStart.init(this, false)
+        BikerStart.init(this, false)
 
     }
 

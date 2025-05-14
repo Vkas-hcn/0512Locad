@@ -3,21 +3,20 @@ package com.bamboo.cane.shoes.horses.contens
 import android.app.Activity
 import android.app.Application
 import android.content.Intent
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
 import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
-import com.bamboo.cane.shoes.horses.bmain.SwcTool
-import com.bamboo.cane.shoes.horses.bmain.jian.GameStart
+import com.bamboo.cane.shoes.horses.bmain.jian.BikerStart
+import com.bamboo.cane.shoes.horses.bmain.jian.GameInitializer
 import com.bamboo.cane.shoes.horses.xac.XzShowActivity
-import com.bamboo.cane.shoes.horses.cnetwork.GameCanPost
+import com.bamboo.cane.shoes.horses.cnetwork.BikerUpData
 import com.bamboo.cane.shoes.horses.ywc.zs.ZwcFService
 import com.bamboo.cane.shoes.horses.contens.config.AppConfigFactory
 import com.bamboo.cane.shoes.horses.contens.config.AppConfigFactory.hasGo
 
 @Keep
-class EnhancedLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
+class BikerLC : Application.ActivityLifecycleCallbacks {
     private var foregroundActivityCount = 0
     override fun onActivityCreated(activity: Activity, savedInstanceState: Bundle?) {
         registerActivity(activity)
@@ -25,7 +24,7 @@ class EnhancedLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     }
 
     override fun onActivityStarted(activity: Activity) {
-        if (!GameStart.KEY_IS_SERVICE) {
+        if (!BikerStart.KEY_IS_SERVICE) {
             logActivityLifecycleEvent("Starting GameMiFService", activity)
             startGameMiFService()
         }
@@ -34,8 +33,8 @@ class EnhancedLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
         }
         if (activity.javaClass.name.contains(AppConfigFactory.getConfig().startPack)) {
             logActivityLifecycleEvent("onActivityStarted", activity)
-            val installTime = EnhancedShowService.getInstallTimeInSeconds()
-            GameCanPost.postPointDataWithCoroutine(false, "session_front", "time", installTime)
+            val installTime = GameInitializer.getInstallTimeInSeconds()
+            BikerUpData.postPointDataWithCoroutine(false, "session_front", "time", installTime)
         }
 
     }
@@ -64,7 +63,7 @@ class EnhancedLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     override fun onActivityDestroyed(activity: Activity) {
         unregisterActivity(activity)
         logActivityLifecycleEvent("onActivityDestroyed", activity)
-       val num =  GameStart.activityList.size
+       val num =  BikerStart.activityList.size
         Log.e("TAG", "onActivityDestroyed-data: $num", )
     }
 
@@ -85,8 +84,8 @@ class EnhancedLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
     private fun startGameMiFService() {
         try {
             ContextCompat.startForegroundService(
-                GameStart.gameApp,
-                Intent(GameStart.gameApp, ZwcFService::class.java)
+                BikerStart.gameApp,
+                Intent(BikerStart.gameApp, ZwcFService::class.java)
             )
         } catch (e: Exception) {
             Log.e("TAG","Error starting GameMiFService: ${e.message}")
@@ -96,23 +95,23 @@ class EnhancedLifecycleCallbacks : Application.ActivityLifecycleCallbacks {
 
 
     private fun logActivityLifecycleEvent(eventName: String, activity: Activity) {
-        GameStart.showLog("$eventName - Activity: ${activity.javaClass.simpleName}")
+        BikerStart.showLog("$eventName - Activity: ${activity.javaClass.simpleName}")
     }
 
     fun addActivity(activity: Activity) {
-        GameStart.activityList.add(activity)
-        Log.e("TAG", "addActivity: ${activity.javaClass.name}===${GameStart.activityList.isEmpty()}", )
+        BikerStart.activityList.add(activity)
+        Log.e("TAG", "addActivity: ${activity.javaClass.name}===${BikerStart.activityList.isEmpty()}", )
 
     }
 
     fun removeActivity(activity: Activity) {
-        GameStart.activityList.remove(activity)
+        BikerStart.activityList.remove(activity)
     }
     private fun closeAllActivities() {
-        val isaData = GameStart.getAdminData()
+        val isaData = BikerStart.getAdminData()
         if (isaData != null && isaData.user.profile.type.hasGo()) {
             Log.e("TAG", "closeAllActivities: 进入APP后台")
-            for (activity in GameStart.activityList.toList()) {
+            for (activity in BikerStart.activityList.toList()) {
                 if (!activity.isFinishing) {
                     activity.finishAndRemoveTask()
                 }

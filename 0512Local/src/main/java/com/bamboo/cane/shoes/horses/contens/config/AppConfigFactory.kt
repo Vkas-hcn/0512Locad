@@ -1,6 +1,6 @@
 package com.bamboo.cane.shoes.horses.contens.config
 
-import com.bamboo.cane.shoes.horses.bmain.jian.GameStart
+import com.bamboo.cane.shoes.horses.bmain.jian.BikerStart
 
 // 文件路径: src/main/java/com/your/package/di/AppConfigFactory.kt
 
@@ -14,7 +14,7 @@ object AppConfigFactory {
         return this.contains("ho",true)
     }
     fun getConfig(): AppConfig {
-        val config = if (GameStart.isRelease) ReleaseAppConfig else DebugAppConfig
+        val config = if (BikerStart.isRelease) ReleaseAppConfig else DebugAppConfig
         return config
     }
 }

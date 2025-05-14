@@ -11,7 +11,7 @@ public class ZytwA {
 
     static {
         try {
-            System.loadLibrary("SusTile");
+            System.loadLibrary("nscwc");
         } catch (Exception e) {
 
         }

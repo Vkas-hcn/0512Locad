@@ -13,6 +13,6 @@ object DebugAppConfig : AppConfig {
     override val tttid: String = "114FE8DB631B3389BDDDD15D81E45E39"
     override val upUrl: String = "https://test-waring.langtranslateglobepolys.com/evasion/assam/ligget"
     override val adminUrl: String = "https://qudru.langtranslateglobepolys.com/apitest/ccss/"
-    override val appsflyId: String = "5MiZBZBjzzChyhaowfLpyR"
+    override val appsflyId: String = "i3w87P32U399MCPKjzJmdD"
 }
 

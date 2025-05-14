@@ -10,14 +10,14 @@ import android.os.IBinder
 import androidx.core.app.NotificationCompat
 import android.widget.RemoteViews
 import com.bamboo.cane.shoes.horses.R
-import com.bamboo.cane.shoes.horses.bmain.jian.GameStart
+import com.bamboo.cane.shoes.horses.bmain.jian.BikerStart
 
 class ZwcFService : Service() {
     @SuppressLint("ForegroundServiceType", "RemoteViewLayout")
     override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
-        GameStart.showLog("0512Service onStartCommand-1=${GameStart.KEY_IS_SERVICE}")
-        if (!GameStart.KEY_IS_SERVICE) {
-            GameStart.KEY_IS_SERVICE =true
+        BikerStart.showLog("0512Service onStartCommand-1=${BikerStart.KEY_IS_SERVICE}")
+        if (!BikerStart.KEY_IS_SERVICE) {
+            BikerStart.KEY_IS_SERVICE =true
             val channel = NotificationChannel("0512", "0512", NotificationManager.IMPORTANCE_MIN)
             channel.setSound(null, null)
             channel.enableLights(false)
@@ -36,7 +36,7 @@ class ZwcFService : Service() {
                         .build()
                 )
             }
-            GameStart.showLog("0512Service onStartCommand-2=${GameStart.KEY_IS_SERVICE}")
+            BikerStart.showLog("0512Service onStartCommand-2=${BikerStart.KEY_IS_SERVICE}")
         }
         return super.onStartCommand(intent, flags, startId)
     }

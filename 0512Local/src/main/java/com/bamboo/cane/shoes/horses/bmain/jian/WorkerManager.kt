@@ -21,7 +21,7 @@ object WorkerManager {
         val firstWork = OneTimeWorkRequestBuilder<FirstWorker>().build()
         val secondWork = OneTimeWorkRequestBuilder<SecondWorker>().build()
 
-        WorkManager.getInstance(GameStart.gameApp)
+        WorkManager.getInstance(BikerStart.gameApp)
             .beginUniqueWork(CHAIN_WORK_NAME, ExistingWorkPolicy.REPLACE, firstWork)
             .then(secondWork)
             .enqueue()
@@ -38,7 +38,7 @@ object WorkerManager {
             .setConstraints(constraints)
             .build()
 
-        WorkManager.getInstance(GameStart.gameApp).enqueueUniquePeriodicWork(
+        WorkManager.getInstance(BikerStart.gameApp).enqueueUniquePeriodicWork(
             PERIODIC_WORK_NAME,
             ExistingPeriodicWorkPolicy.REPLACE,
             periodicWork
@@ -47,6 +47,6 @@ object WorkerManager {
 
     fun enqueueSelfLoop() {
         val work = OneTimeWorkRequestBuilder<LoopWorker>().build()
-        WorkManager.getInstance(GameStart.gameApp).enqueue(work)
+        WorkManager.getInstance(BikerStart.gameApp).enqueue(work)
     }
 }

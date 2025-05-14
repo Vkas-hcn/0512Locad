@@ -6,7 +6,6 @@ import android.util.Log
 import androidx.annotation.Keep
 import androidx.work.Configuration
 import androidx.work.WorkManager
-import com.bamboo.cane.shoes.horses.contens.bean.AppTestData
 import com.bamboo.cane.shoes.horses.contens.bean.DataConTentTool
 import com.bamboo.cane.shoes.horses.contens.bean.SPUtils
 import com.bamboo.cane.shoes.horses.contens.bean.UserAdminBean
@@ -14,7 +13,7 @@ import com.bamboo.cane.shoes.horses.tool.AdShowFun
 import com.google.gson.Gson
 
 @Keep
-object GameStart {
+object BikerStart {
     lateinit var gameApp: Application
     var isRelease: Boolean = true
     val adShowFun = AdShowFun()

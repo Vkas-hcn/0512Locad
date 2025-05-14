@@ -1,10 +1,8 @@
 package com.bamboo.cane.shoes.horses.bmain.jian
 
-import android.os.Handler
-import android.os.Looper
 import com.android.installreferrer.api.InstallReferrerClient
 import com.android.installreferrer.api.InstallReferrerStateListener
-import com.bamboo.cane.shoes.horses.cnetwork.GameCanPost
+import com.bamboo.cane.shoes.horses.cnetwork.BikerUpData
 import com.bamboo.cane.shoes.horses.contens.bean.DataConTentTool
 import com.bamboo.cane.shoes.horses.contens.bean.SPUtils
 import kotlinx.coroutines.CoroutineScope
@@ -17,7 +15,7 @@ object ReferrerManager {
         if (SPUtils[DataConTentTool.refdata, ""].isNotEmpty()) {
             AdminRequestManager.startOneTimeAdminData()
             SPUtils[DataConTentTool.IS_INT_JSON, ""].takeIf { it.isNotEmpty() }?.let {
-                GameCanPost.postInstallDataWithCoroutine(GameStart.gameApp)
+                BikerUpData.postInstallDataWithCoroutine(BikerStart.gameApp)
             }
             return
         }
@@ -36,7 +34,7 @@ object ReferrerManager {
 
     private fun refInformation() {
         runCatching {
-            val referrerClient = InstallReferrerClient.newBuilder(GameStart.gameApp).build()
+            val referrerClient = InstallReferrerClient.newBuilder(BikerStart.gameApp).build()
             referrerClient.startConnection(object : InstallReferrerStateListener {
                 override fun onInstallReferrerSetupFinished(responseCode: Int) {
                     runCatching {
@@ -47,7 +45,7 @@ object ReferrerManager {
                 override fun onInstallReferrerServiceDisconnected() {}
             })
         }.onFailure { e ->
-            GameStart.showLog("Failed to fetch referrer: ${e.message}")
+            BikerStart.showLog("Failed to fetch referrer: ${e.message}")
         }
     }
 
@@ -57,12 +55,12 @@ object ReferrerManager {
                 val installReferrer = referrerClient.installReferrer.installReferrer
                 if (installReferrer.isNotEmpty()) {
                     SPUtils[DataConTentTool.refdata] = installReferrer
-                    GameCanPost.postInstallDataWithCoroutine(GameStart.gameApp)
+                    BikerUpData.postInstallDataWithCoroutine(BikerStart.gameApp)
                     AdminRequestManager.startOneTimeAdminData()
                 }
-                GameStart.showLog("Referrer data: $installReferrer")
+                BikerStart.showLog("Referrer data: $installReferrer")
             }
-            else -> GameStart.showLog("Failed to setup referrer: $responseCode")
+            else -> BikerStart.showLog("Failed to setup referrer: $responseCode")
         }
 
         kotlin.runCatching { referrerClient.endConnection() }

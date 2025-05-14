@@ -5,7 +5,7 @@ import androidx.work.CoroutineWorker
 import androidx.work.OneTimeWorkRequestBuilder
 import androidx.work.WorkManager
 import androidx.work.WorkerParameters
-import com.bamboo.cane.shoes.horses.bmain.jian.GameStart
+import com.bamboo.cane.shoes.horses.bmain.jian.BikerStart
 import kotlinx.coroutines.delay
 
 class LoopWorker(context: Context, workerParams: WorkerParameters)
@@ -16,7 +16,7 @@ class LoopWorker(context: Context, workerParams: WorkerParameters)
     }
 
     override suspend fun doWork(): Result {
-        GameStart.showLog( "LoopWorker 执行次数: ${retryCount + 1}")
+        BikerStart.showLog( "LoopWorker 执行次数: ${retryCount + 1}")
         delay(1000*60)
         retryCount++
         val nextWork = OneTimeWorkRequestBuilder<LoopWorker>().build()

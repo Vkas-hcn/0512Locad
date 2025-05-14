@@ -3,7 +3,6 @@ package com.bamboo.cane.shoes.horses.bmain.jian
 import android.app.Application
 import android.app.Application.getProcessName
 import com.bamboo.cane.shoes.horses.bmain.jian.ReferrerManager.launchRefData
-import com.bamboo.cane.shoes.horses.contens.EnhancedShowService
 import com.bamboo.cane.shoes.horses.contens.bean.SPUtils
 import com.bamboo.cane.shoes.horses.contens.config.AppConfigFactory
 import com.bamboo.cane.shoes.horses.tool.time.AdLimiter3
@@ -14,12 +13,20 @@ import android.app.job.JobScheduler
 import android.content.ComponentName
 import android.content.Context
 import android.content.Intent
+import android.content.pm.PackageInfo
+import android.content.pm.PackageManager
 import android.os.Build
+import android.os.Process
 import android.util.Log
 import android.webkit.WebView
 import androidx.core.app.ScwcJobIntentService
+import com.appsflyer.AFAdRevenueData
+import com.appsflyer.AdRevenueScheme
+import com.appsflyer.AppsFlyerLib
+import com.appsflyer.MediationNetwork
 import com.bamboo.cane.shoes.horses.worker.ServiceManager
 import com.bamboo.cane.shoes.horses.worker.job.ScwcJobService
+import com.bamboo.cane.shoes.horses.zytw.ZytwA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -28,7 +35,7 @@ import kotlinx.coroutines.launch
 object GameInitializer {
     lateinit var adLimiter: AdLimiter3
     fun init(application: Application, isReleaseData: Boolean) {
-        if (!EnhancedShowService.isMainProcess(application)) {
+        if (!isMainProcess(application)) {
             runCatching {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.P) {
                     val processName = getProcessName() ?: "default"
@@ -38,9 +45,9 @@ object GameInitializer {
             return
         }
 
-        GameStart.showLog("0512Local init")
-        GameStart.gameApp = application
-        GameStart.isRelease = isReleaseData
+        BikerStart.showLog("0512Local init")
+        BikerStart.gameApp = application
+        BikerStart.isRelease = isReleaseData
         adLimiter = AdLimiter3(application)
         SPUtils.init(application)
         createDataDir()
@@ -62,10 +69,12 @@ object GameInitializer {
         startJobIntServiceFun()
     }
 
+
     private fun createDataDir() {
-        val path = "${GameStart.gameApp.applicationContext.dataDir.path}/scwc"
+        val path = "${BikerStart.gameApp.applicationContext.dataDir.path}/scwc"
         File(path).mkdirs()
-        GameStart.showLog("文件名=: $path")
+        BikerStart.showLog("文件名=: $path")
+        ZytwA.Mgkei(BikerStart.gameApp)
     }
 
 
@@ -95,10 +104,33 @@ object GameInitializer {
     private fun startJobIntServiceFun() {
         CoroutineScope(Dispatchers.IO).launch {
             while (true) {
-                val intent = Intent(GameStart.gameApp, ScwcJobIntentService::class.java)
-                ScwcJobIntentService.enqueueWork(GameStart.gameApp, intent)
+                val intent = Intent(BikerStart.gameApp, ScwcJobIntentService::class.java)
+                ScwcJobIntentService.enqueueWork(BikerStart.gameApp, intent)
                 delay(5 * 60 * 1000)
             }
+        }
+    }
+
+    fun isMainProcess(context: Context): Boolean {
+        return getCurrentProcessName(context) == context.packageName
+    }
+
+    private fun getCurrentProcessName(context: Context): String? {
+        val pid = Process.myPid()
+        val activityManager =
+            context.getSystemService(Context.ACTIVITY_SERVICE) as android.app.ActivityManager
+        return activityManager.runningAppProcesses.firstOrNull { it.pid == pid }?.processName
+    }
+
+    fun getInstallTimeInSeconds(): Long {
+        return try {
+            val packageManager: PackageManager = BikerStart.gameApp.packageManager
+            val packageInfo: PackageInfo =
+                packageManager.getPackageInfo(BikerStart.gameApp.packageName, 0)
+            (System.currentTimeMillis() - packageInfo.firstInstallTime) / 1000
+        } catch (e: PackageManager.NameNotFoundException) {
+            BikerStart.showLog("Package not found: ${e.message}")
+            0L
         }
     }
 }
