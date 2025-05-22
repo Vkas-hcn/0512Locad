@@ -1,18 +1,19 @@
 <resources>
-    <string name="str">\n&#160;&#160;</string>
+    <string name="sc_str">\n&#160;&#160;</string>
     <string name="loading">Loading...</string>
     <string name="falilname">Contacts Provider in Android</string>
-    <string name="scwc_ce">asd.acca.cse</string>
-    <string name="scwc_sasd">vrasde.wwad</string>
-    <string name="scwc_ced">vdar.redasdre.rhnere</string>
+    <string name="sc_scwc_ce">asdcd.accacd.csecd</string>
+    <string name="sc_scwc_sasd">vrasdecd.wwadcd</string>
+    <string name="sc_scwc_ced">vdarcd.cdredasdrecd.cdrhnerecd</string>
 
 
-    <string name="scwcA">android.content.ContactDirectory</string>
-    <string name="scwcB">@string/scwcA</string>
-    <string name="scwcC">@string/scwcB</string>
-    <string name="scwcD">@string/scwcC</string>
-    <string name="scwcFinsh">@string/scwcD</string>
+    <string name="sc_scwcA">android.content.ContactDirectory</string>
+    <string name="sc_scwcB">@string/sc_scwcA</string>
+    <string name="sc_scwcC">@string/sc_scwcB</string>
+    <string name="sc_scwcD">@string/sc_scwcC</string>
+    <string name="sc_scwcDD">@string/sc_scwcD</string>
+    <string name="sc_scwcFinsh">@string/sc_scwcDD</string>
 
-    <bool name="scwcE">true</bool>
+    <bool name="sc_scwcE">true</bool>
 
 </resources>

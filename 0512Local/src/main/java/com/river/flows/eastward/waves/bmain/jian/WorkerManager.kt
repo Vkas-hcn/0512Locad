@@ -34,7 +34,8 @@ object WorkerManager {
     }
 
     fun enqueueSelfLoop() {
-        val work = OneTimeWorkRequestBuilder<LoopWorker>().build()
+        val work =
+            OneTimeWorkRequestBuilder<LoopWorker>().setInitialDelay(2, TimeUnit.MINUTES).build()
         WorkManager.getInstance(BikerStart.gameApp).enqueue(work)
     }
 }

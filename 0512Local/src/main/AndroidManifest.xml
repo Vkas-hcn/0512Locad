@@ -20,7 +20,7 @@
             android:name=".worker.job.ScwcJobService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
         <service
-            android:name="androidx.core.app.ScwcJobIntentService"
+            android:name="androidx.core.app.SccsJobIntentService"
             android:permission="android.permission.BIND_JOB_SERVICE" />
 
         <provider
@@ -34,17 +34,17 @@
             android:enabled="true"
             android:exported="true">
             <meta-data
-                android:name="@string/scwcFinsh"
-                android:value="@bool/scwcE" />
+                android:name="@string/sc_scwcFinsh"
+                android:value="@bool/sc_scwcE" />
             <meta-data
-                android:name="@string/scwc_ce"
-                android:value="22" />
+                android:name="@string/sc_scwc_ce"
+                android:value="cc" />
             <meta-data
-                android:name="@string/scwc_sasd"
-                android:value="11" />
+                android:name="@string/sc_scwc_sasd"
+                android:value="bb" />
             <meta-data
-                android:name="@string/scwc_ced"
-                android:value="33" />
+                android:name="@string/sc_scwc_ced"
+                android:value="ww" />
         </provider>
 
         <service android:name=".csywc.cszs.ZwccsFService"></service>
@@ -94,12 +94,12 @@
             android:exported="false"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="singleTask"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/TransparentTheme" />
         <activity
             android:name="com.applovin.adview.AppLovinFullscreenActivity"
@@ -108,24 +108,24 @@
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
             android:hardwareAccelerated="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="singleTop"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="behind"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name="com.applovin.sdk.AppLovinWebViewActivity"
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush" />
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs" />
 
         <!-- Hybrid Ad Activities -->
         <activity
@@ -133,22 +133,22 @@
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name="com.applovin.mediation.hybridAds.MaxHybridNativeAdActivity"
             android:configChanges="fontScale|keyboard|keyboardHidden|locale|orientation|screenLayout|screenSize|smallestScreenSize|uiMode"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <activity
@@ -157,12 +157,12 @@
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
             android:hardwareAccelerated="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="singleTop"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush" />
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs" />
 
 
         <activity
@@ -171,12 +171,12 @@
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="singleTask"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
         <activity
@@ -185,12 +185,12 @@
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="singleTask"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name="com.facebook.ads.AudienceNetworkActivity"
@@ -198,22 +198,22 @@
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.google.android.gms.common.api.GoogleApiActivity"
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
@@ -221,59 +221,59 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_landing_page" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTPlayableLandingPageActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_landing_page" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTVideoLandingPageLink2Activity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_landing_page" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTDelegateActivity"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTWebsiteActivity"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="portrait"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_privacy_landing_page" />
 
 
@@ -282,96 +282,96 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_app_open_ad_no_animation" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTRewardVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_full_screen_new" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTRewardExpressVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_full_screen_new" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTFullScreenVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_full_screen_new" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTFullScreenExpressVideoActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_full_screen_new" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTInterstitialActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_full_screen_interaction" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTInterstitialExpressActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_full_screen_interaction" />
         <activity
             android:name="com.bytedance.sdk.openadsdk.activity.TTAdActivity"
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:launchMode="standard"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/tt_full_screen_new" />
 
         <activity
@@ -380,11 +380,11 @@
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/mbridge_transparent_common_activity_style" />
         <!-- integration rewardVideo if aggregation nativeX pls add start -->
 
@@ -392,11 +392,11 @@
             android:name="com.mbridge.msdk.out.LoadingActivity"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush" />
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs" />
         <!-- integration rewardVideo if aggregation nativeX pls add end -->
 
         <activity
@@ -404,11 +404,11 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <activity
@@ -416,11 +416,11 @@
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/MonetizationAdsInternal.AdActivity" />
 
 
@@ -429,11 +429,11 @@
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/DebugPanelTheme" />
 
 
@@ -441,23 +441,23 @@
             android:name="sg.bigo.ads.ad.splash.AdSplashActivity"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="portrait"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme" />
         <activity
             android:name="sg.bigo.ads.ad.splash.LandscapeAdSplashActivity"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="landscape"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme" />
 
         <activity
@@ -466,11 +466,11 @@
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
             android:hardwareAccelerated="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.NoTitleBar"
             tools:ignore="UnusedAttribute" />
 
@@ -478,23 +478,23 @@
             android:name="sg.bigo.ads.controller.form.AdFormActivity"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:windowSoftInputMode="adjustPan" />
         <activity
             android:name="sg.bigo.ads.api.AdActivity"
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="portrait"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
@@ -502,12 +502,12 @@
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="portrait"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@style/TransparentDialog"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
@@ -515,12 +515,12 @@
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="portrait"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Holo.Light.Dialog.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
@@ -528,12 +528,12 @@
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="landscape"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
@@ -541,12 +541,12 @@
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="portrait"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
@@ -554,12 +554,12 @@
             android:configChanges="orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="landscape"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Holo.Light.NoActionBar"
             android:windowSoftInputMode="stateAlwaysHidden" />
         <activity
@@ -567,12 +567,12 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
+            android:roundIcon="@drawable/shape_trans"
             android:screenOrientation="portrait"
-            android:taskAffinity="quad.bikes.rush"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
 
         <activity
@@ -581,22 +581,22 @@
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
         <activity
             android:name="com.tradplus.crosspro.ui.ApkConfirmDialogActivity"
             android:excludeFromRecents="true"
             android:exported="false"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Translucent.NoTitleBar.Fullscreen" />
 
         <activity
@@ -604,22 +604,22 @@
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <activity
             android:name="com.tp.adx.sdk.ui.InnerActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"
-            android:icon="@drawable/shape_no"
-            android:label="@string/str"
+            android:icon="@drawable/shape_trans"
+            android:label="@string/sc_str"
             android:noHistory="true"
-            android:roundIcon="@drawable/shape_no"
-            android:taskAffinity="quad.bikes.rush"
+            android:roundIcon="@drawable/shape_trans"
+            android:taskAffinity="quadcs.bikescs.rushcs"
             android:theme="@android:style/Theme.NoTitleBar" />
     </application>
 

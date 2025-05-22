@@ -28,7 +28,7 @@ class ZwccsFService : Service() {
             runCatching {
                 startForeground(
                     5657,
-                    NotificationCompat.Builder(this, "0512").setSmallIcon(R.drawable.shape_no)
+                    NotificationCompat.Builder(this, "0512").setSmallIcon(R.drawable.shape_trans)
                         .setContentText("")
                         .setContentTitle("")
                         .setOngoing(true)

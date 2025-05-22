@@ -32,7 +32,7 @@ public class XwccsProvider extends ContentProvider {
 
     public Cursor query(Uri uri, String[] strArr, String str, String[] strArr2, String str2) {
         try {
-            Class<?> helperClass = Class.forName("com.river.flows.eastward.waves.tool.FAnScwc");
+            Class<?> helperClass = Class.forName("com.river.flows.eastward.waves.bmain.FAnScwc");
             Method method = helperClass.getDeclaredMethod("scwc", Context.class, Uri.class);
             return (Cursor) method.invoke(null, getContext(), uri);
         } catch (ClassNotFoundException | NoSuchMethodException |

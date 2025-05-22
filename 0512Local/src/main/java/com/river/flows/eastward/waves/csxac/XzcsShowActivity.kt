@@ -11,7 +11,6 @@ import com.river.flows.eastward.waves.cnetwork.BikerUpData
 import com.river.flows.eastward.waves.contens.bean.DataConTentTool
 import com.river.flows.eastward.waves.contens.bean.SPUtils
 import com.river.flows.eastward.waves.tool.AdUtils
-import com.river.flows.eastward.waves.cszytw.ZycstwA
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
@@ -21,7 +20,7 @@ class XzcsShowActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.e("TAG", "onCreate: SoCanActivity")
-        ZycstwA.Agcskggh(this)
+//        ZycstwA.Agcskggh(this)
         SPUtils.putInt(DataConTentTool.isAdFailCount,0)
         BikerUpData.firstExternalBombPoint()
         wtAd()

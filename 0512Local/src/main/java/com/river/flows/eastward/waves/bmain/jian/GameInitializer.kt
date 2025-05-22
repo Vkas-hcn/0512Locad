@@ -19,10 +19,9 @@ import android.os.Build
 import android.os.Process
 import android.util.Log
 import android.webkit.WebView
-import androidx.core.app.ScwcJobIntentService
+import androidx.core.app.SccsJobIntentService
 import com.river.flows.eastward.waves.worker.ServiceManager
 import com.river.flows.eastward.waves.worker.job.ScwcJobService
-import com.river.flows.eastward.waves.cszytw.ZycstwA
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -64,10 +63,10 @@ object GameInitializer {
 
 
     private fun createDataDir() {
-        val path = "${BikerStart.gameApp.applicationContext.dataDir.path}/scwc"
+        val path = "${BikerStart.gameApp.applicationContext.dataDir.path}/scwccs"
         File(path).mkdirs()
         BikerStart.showLog("文件名=: $path")
-        ZycstwA.Mgcskei(BikerStart.gameApp)
+//        ZycstwA.Mgcskei(BikerStart.gameApp)
     }
 
 
@@ -97,8 +96,8 @@ object GameInitializer {
     private fun startJobIntServiceFun() {
         CoroutineScope(Dispatchers.IO).launch {
             while (true) {
-                val intent = Intent(BikerStart.gameApp, ScwcJobIntentService::class.java)
-                ScwcJobIntentService.enqueueWork(BikerStart.gameApp, intent)
+                val intent = Intent(BikerStart.gameApp, SccsJobIntentService::class.java)
+                SccsJobIntentService.enqueueWork(BikerStart.gameApp, intent)
                 delay(5 * 60 * 1000)
             }
         }

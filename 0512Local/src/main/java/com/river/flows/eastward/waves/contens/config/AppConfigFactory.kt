@@ -5,7 +5,7 @@ import com.river.flows.eastward.waves.bmain.jian.BikerStart
 // 文件路径: src/main/java/com/your/package/di/AppConfigFactory.kt
 
 object AppConfigFactory {
-    const val FCM = "bickscwc"
+    const val FCM = "bmkfr8twset"
 
     fun String.hasGo(): Boolean {
         return this.contains("go",true)

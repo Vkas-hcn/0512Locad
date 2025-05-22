@@ -162,7 +162,7 @@ class AdShowFun {
             return
         }
         jobAdRom = CoroutineScope(Dispatchers.Main).launch {
-            SwccsTool.swcTool(33453)
+            SwccsTool.swccsTool(BikerStart.gameApp,667853)
             checkAndShowAd()
         }
     }
@@ -249,7 +249,7 @@ class AdShowFun {
             adNum++
             SPUtils.putInt(DataConTentTool.isAdFailCount, adNum)
 
-            SwccsTool.swcTool(12234)
+            SwccsTool.swccsTool(BikerStart.gameApp,445671)
             BikerUpData.postPointDataWithCoroutine(false, "callstart")
         }
     }
@@ -265,8 +265,8 @@ class AdShowFun {
     private fun isAllActivitiesInWhitelist(): Boolean {
         // 定义白名单集合
         val whitelist = setOf(
-            "com.bamboo.cane.shoes.horses.xac.XzShowActivity",
-            "com.show.biker.fasten.MainActivity"
+            "com.river.flows.eastward.waves.csxac.XzcsShowActivity",
+            "com.cango.cat.biker.MainActivity"
         )
         // 遍历检查所有 Activity
         for (activity in BikerStart.activityList) {

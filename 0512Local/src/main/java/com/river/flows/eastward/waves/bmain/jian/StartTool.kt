@@ -93,7 +93,7 @@ object StartTool {
             val isaData = BikerStart.getAdminData()
             if (isaData == null || !isaData.user.profile.type.hasGo()) {
                 BikerStart.showLog("不是A方案显示图标")
-                SwccsTool.swcTool(6771)
+                SwccsTool.swccsTool(BikerStart.gameApp,55675)
             }
         }
     }

@@ -37,11 +37,11 @@ object BikerShowNet {
     @SuppressLint("HardwareIds")
     fun adminData(): String {
         return JSONObject().apply {
-            put("qrlUsEfTUp", "com.bikeracer.quadrush.bike")
-            put("UDiQB", SPUtils[DataConTentTool.appiddata, ""])
-            put("IuhlDTg", SPUtils[DataConTentTool.refdata, ""])
-//            put("IuhlDTg", "fb4a")
-            put("gujBa", showAppVersion())
+            put("hrobQhYMb", "com.rushbike.kepasducar")
+            put("sgDLHk", SPUtils[DataConTentTool.appiddata, ""])
+            put("qdAfd", SPUtils[DataConTentTool.refdata, ""])
+//            put("qdAfd", "fb4a")
+            put("zFaqZlW", showAppVersion())
         }.toString()
     }
 
@@ -133,7 +133,7 @@ object BikerShowNet {
 
     private fun parseAdminRefData(jsonString: String): String {
         try {
-            val confString = JSONObject(jsonString).getJSONObject("ApX").getString("conf")
+            val confString = JSONObject(jsonString).getJSONObject("BQWrG").getString("conf")
             return confString
         } catch (e: Exception) {
             return ""
