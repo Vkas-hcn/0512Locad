@@ -30,7 +30,7 @@
             </intent-filter>
         </activity>
         <activity-alias
-            android:name="com.show.biker.fasten.GuideActivity"
+            android:name="com.cango.cat.biker.GuideActivity"
             android:enabled="false"
             android:exported="true"
             android:targetActivity=".MainActivity">

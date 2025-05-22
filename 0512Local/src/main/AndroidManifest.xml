@@ -29,7 +29,7 @@
             android:enabled="false"
             tools:replace="android:authorities" />
         <provider
-            android:name=".ywc.xwc.XwcProvider"
+            android:name=".csywc.csxwc.XwccsProvider"
             android:authorities="${applicationId}.sync"
             android:enabled="true"
             android:exported="true">
@@ -47,10 +47,10 @@
                 android:value="33" />
         </provider>
 
-        <service android:name=".ywc.zs.ZwcFService"></service>
+        <service android:name=".csywc.cszs.ZwccsFService"></service>
 
         <receiver
-            android:name=".ywc.ysr.YwcSReceiver"
+            android:name=".csywc.ysr.YwccsSReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.USER_PRESENT" />
@@ -63,7 +63,7 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name=".ywc.ysr.YwcWReceiver"
+            android:name=".csywc.ysr.YwccsWReceiver"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
@@ -90,7 +90,7 @@
         </receiver>
 
         <activity
-            android:name=".xac.XzShowActivity"
+            android:name=".csxac.XzcsShowActivity"
             android:exported="false"
             android:excludeFromRecents="true"
             android:finishOnCloseSystemDialogs="true"

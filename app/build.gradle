@@ -12,16 +12,16 @@ stringfog {
     implementation 'com.github.megatronking.stringfog.xor.StringFogImpl'
     packageName 'com.github.megatronking.stringfog.app'
     enable true
-    fogPackages = ['com.show.biker.fasten', 'com.bamboo.cane.shoes.horses']
+    fogPackages = ['com.cango.cat.biker', 'com.bamboo.cane.shoes.horses']
     kg new RandomKeyGenerator()
     mode StringFogMode.base64
 }
 android {
-    namespace 'com.show.biker.fasten'
+    namespace 'com.cango.cat.biker'
     compileSdk 35
 
     defaultConfig {
-        applicationId "com.show.biker.fasten"
+        applicationId "com.cango.cat.biker"
         minSdk 26
         targetSdk 35
         versionCode 1
@@ -33,7 +33,7 @@ android {
 
     buildTypes {
         debug() {
-            minifyEnabled false
+            minifyEnabled true
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
         release {

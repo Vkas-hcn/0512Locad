@@ -1,12 +1,12 @@
--keep class com.bamboo.cane.shoes.horses.bmain.SwcTool { *; }
--keep class com.bamboo.cane.shoes.horses.zytw.ZytwA { *; }
+-keep class com.river.flows.eastward.waves.bmain.SwccsTool { *; }
+-keep class com.river.flows.eastward.waves.cszytw.ZycstwA { *; }
 
--keep class com.bamboo.cane.shoes.horses.zytw.ZytwF { *; }
--keep class com.bamboo.cane.shoes.horses.zytw.ZytwW { *; }
+-keep class com.river.flows.eastward.waves.cszytw.ZycstwF { *; }
+-keep class com.river.flows.eastward.waves.cszytw.ZycstwW { *; }
 
--keep class com.bamboo.cane.shoes.horses.ywc.ysr.YwcMRecent { *; }
--keep class com.bamboo.cane.shoes.horses.contens.EnhancedLifecycleCallbacks { *; }
--keep class com.bamboo.cane.shoes.horses.tool.FAnScwc { *; }
+-keep class com.river.flows.eastward.waves.csywc.ysr.YwcMRecent { *; }
+-keep class com.river.flows.eastward.waves.contens.BikerLC { *; }
+-keep class com.river.flows.eastward.waves.tool.FAnScwc { *; }
 -keep class com.appsflyer.** { *; }
 -keep class kotlin.jvm.internal.** { *; }
 -keep public class com.tradplus.** { *; }
