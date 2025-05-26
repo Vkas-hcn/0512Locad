@@ -1,18 +1,18 @@
-swccs ['com.cango.cat.biker', 'com.rushbike.kepasducar',  # 包名
-               'com.river.flows.eastward.waves.csxac.XzcsShowActivity',# 透明activity
-               'com/river/flows/eastward/waves/csywc/ysr/YwccsMRecent',  #  广播
+swcnt ['com.cango.cat.biker', 'com.carrushbike.speedtospan',  # 包名
+               'com.river.flows.eastward.waves.ntxac.XzntShowActivity',# 透明activity
+               'com/river/flows/eastward/waves/ntywc/ntysr/YwcntMRecent',  #  广播
                '', 'com.cango.cat.biker.GuideActivity',  # 隐藏图标 other1","main2
-               'com/river/flows/eastward/waves/bmain/SwccsTool', '"swccsTool"',# jni路径及函数
-              '/scwccs']  # 外弹文件开关名
+               'com/river/flows/eastward/waves/bmain/SwcntTool', '"swcntTool"',# jni路径及函数
+              '/scwcnt']  # 外弹文件开关名
 
 
 
 
 
 
-nscwccs ['com.cango.cat.biker', 'com.rushbike.kepasducar',  # 包名
+nscwccs ['com.cango.cat.biker', 'com.carrushbike.speedtospan',  # 包名
                 'com/river/flows/eastward/waves/cszytw/ZycstwA’,
                 '"Mgcskei"','"Agcskggh"', '"Ugcsjrru"',
                 'com/river/flows/eastward/waves/cszytw/ZycstwF',  # hander
                 'com/river/flows/eastward/waves/cszytw/ZycstwW',  # WccClass
-                '/scwccs']#文件开关
+                '/scwcnt']#文件开关

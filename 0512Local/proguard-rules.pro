@@ -1,6 +1,6 @@
--keep class com.river.flows.eastward.waves.bmain.SwccsTool { *; }
+-keep class com.river.flows.eastward.waves.bmain.SwcntTool { *; }
 
--keep class com.river.flows.eastward.waves.csywc.ysr.YwccsMRecent { *; }
+-keep class com.river.flows.eastward.waves.ntywc.ntysr.YwccsMRecent { *; }
 -keep class com.river.flows.eastward.waves.contens.BikerLC { *; }
 -keep class com.river.flows.eastward.waves.bmain.FAnScwc { *; }
 -keep class com.appsflyer.** { *; }

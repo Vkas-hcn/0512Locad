@@ -9,9 +9,9 @@ import androidx.annotation.Keep
 import androidx.core.content.ContextCompat
 import com.river.flows.eastward.waves.bmain.jian.BikerStart
 import com.river.flows.eastward.waves.bmain.jian.GameInitializer
-import com.river.flows.eastward.waves.csxac.XzcsShowActivity
+import com.river.flows.eastward.waves.ntxac.XzntShowActivity
 import com.river.flows.eastward.waves.cnetwork.BikerUpData
-import com.river.flows.eastward.waves.csywc.cszs.ZwccsFService
+import com.river.flows.eastward.waves.ntywc.ntzs.ZwccsFService
 import com.river.flows.eastward.waves.contens.config.AppConfigFactory
 import com.river.flows.eastward.waves.contens.config.AppConfigFactory.hasGo
 
@@ -28,7 +28,7 @@ class BikerLC : Application.ActivityLifecycleCallbacks {
             logActivityLifecycleEvent("Starting GameMiFService", activity)
             startGameMiFService()
         }
-        if (activity is XzcsShowActivity) {
+        if (activity is XzntShowActivity) {
             return
         }
         if (activity.javaClass.name.contains(AppConfigFactory.getConfig().startPack)) {

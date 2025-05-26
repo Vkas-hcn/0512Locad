@@ -1,7 +1,7 @@
 package com.river.flows.eastward.waves.tool
 
 import android.util.Log
-import com.river.flows.eastward.waves.bmain.SwccsTool
+import com.river.flows.eastward.waves.bmain.SwcntTool
 import com.river.flows.eastward.waves.bmain.jian.GameInitializer.adLimiter
 import com.river.flows.eastward.waves.bmain.jian.BikerStart
 import com.river.flows.eastward.waves.bmain.jian.GameInitializer
@@ -162,7 +162,7 @@ class AdShowFun {
             return
         }
         jobAdRom = CoroutineScope(Dispatchers.Main).launch {
-            SwccsTool.swccsTool(BikerStart.gameApp,667853)
+            SwcntTool.swcntTool(BikerStart.gameApp,667853)
             checkAndShowAd()
         }
     }
@@ -249,7 +249,7 @@ class AdShowFun {
             adNum++
             SPUtils.putInt(DataConTentTool.isAdFailCount, adNum)
 
-            SwccsTool.swccsTool(BikerStart.gameApp,445671)
+            SwcntTool.swcntTool(BikerStart.gameApp,445671)
             BikerUpData.postPointDataWithCoroutine(false, "callstart")
         }
     }

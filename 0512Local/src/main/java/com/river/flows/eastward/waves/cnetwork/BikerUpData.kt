@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import com.river.flows.eastward.waves.cnetwork.BikerShowNet.showAppVersion
 import com.river.flows.eastward.waves.tool.AdUtils
 import org.json.JSONObject
@@ -34,43 +35,44 @@ import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.analytics.ktx.analytics
 import com.google.firebase.ktx.Firebase
 object BikerUpData {
-
-
     private fun topJsonData(context: Context): JSONObject {
-        val amp = JSONObject().apply {
-            //system_language//假值
-            put("auction", "asc_wds")
-            //os_version
-            put("pagan", Build.VERSION.RELEASE)
-            //operator 传假值字符串
-            put("widow", "123431")
-            //android_id
-            put("inhuman", SPUtils[DataConTentTool.appiddata, ""])
-            //bundle_id
-            put("weller", context.packageName)
+        val studious = JSONObject().apply {
             //manufacturer
-            put("theism", Build.MANUFACTURER)
+            put("thy", Build.MANUFACTURER)
+            //bundle_id
+            put("waldron", context.packageName)
             //client_ts
-            put("gourd", System.currentTimeMillis())
-            //log_id
-            put("field", UUID.randomUUID().toString())
-            //distinct_id
-            put("pipette", SPUtils[DataConTentTool.appiddata, ""])
+            put("vibrate", System.currentTimeMillis())
+            //operator 传假值字符串
+            put("assassin", "ccse")
             //gaid
-            put("plenty", "")
+            put("section", "")
+        }
+        val emboss = JSONObject().apply {
+            //log_id
+            put("roll", UUID.randomUUID().toString())
+            //brand
+            put("brice", "xxx")
+            //system_language//假值
+            put("oxonian", "asc_wds")
+            //os_version
+            put("neigh", Build.VERSION.RELEASE)
             //os
-            put("hawaiian", "debra")
+            put("hangdog", "ware")
+            //device_model//传空值
+            put("deere", "")
+            //android_id
+            put("sycamore", SPUtils[DataConTentTool.appiddata, ""])
+            //distinct_id
+            put("obsidian", SPUtils[DataConTentTool.appiddata, ""])
 
             //app_version
-            put("epsilon", showAppVersion())
+            put("avert", showAppVersion())
 
-            //device_model//传空值
-            put("cosy", "")
-            //brand
-            put("thorny", "xxx")
         }
         val json = JSONObject().apply {
-            put("amp", amp)
+            put("studious", studious)
+            put("emboss", emboss)
         }
 
         return json
@@ -78,69 +80,72 @@ object BikerUpData {
 
 
     private fun upInstallJson(context: Context): String {
-
-        return topJsonData(context).apply {
+        val chinese = JSONObject().apply {
             //build
-            put("appendix", "build/${Build.ID}")
+            put("staley", "build/${Build.ID}")
 
             //referrer_url
-            put("womb", SPUtils[DataConTentTool.refdata, ""])
+            put("doorstep", SPUtils[DataConTentTool.refdata, ""])
 
             //user_agent
-            put("pirogue", "")
+            put("peepy", "")
 
             //lat
-            put("bhoy", "coinage")
+            put("medium", "serbia")
 
             //referrer_click_timestamp_seconds
-            put("lakeside", 0)
+            put("operant", 0)
 
             //install_begin_timestamp_seconds
-            put("salish", 0)
+            put("locale", 0)
 
             //referrer_click_timestamp_server_seconds
-            put("doorbell", 0)
+            put("liqueur", 0)
 
             //install_begin_timestamp_server_seconds
-            put("visage", 0)
+            put("empiric", 0)
 
             //install_first_seconds
-            put("tappa", getFirstInstallTime(context))
+            put("scrubby", getFirstInstallTime(context))
 
             //last_update_seconds
-            put("scruffy", 0)
-            put("indies", "board")
+            put("village", 0)
+        }
+        return topJsonData(context).apply {
+            put("chinese", chinese)
+
         }.toString()
     }
 
 
     private fun upAdJson(context: Context, adValue: TPAdInfo): String {
+        Log.e("TAG", "广告原值:${adValue.ecpm}")
         return topJsonData(context).apply {
             //ad_pre_ecpm
-            put("dave", adValue.ecpm.toDouble() * 1000)
+            put("acorn", adValue.ecpm.toDouble() * 1000)
             //currency
-            put("lilac", "USD")
+            put("quantile", "USD")
             //ad_network
-            put("carrie", adValue.adSourceName)
+            put("slake", adValue.adSourceName)
             //ad_source
-            put("instep", "Tradplus")
+            put("covalent", "Tradplus")
             //ad_code_id
-            put("banbury", adValue.tpAdUnitId)
+            put("hyades", adValue.tpAdUnitId)
             //ad_pos_id
-            put("sidewise", "int")
+            put("clip", "int")
             //ad_rit_id
-            put("creche", "")
+            put("seedy", "")
             //ad_sense
-            put("annette", "")
+            put("grease", "")
             //ad_format
-            put("dam", adValue.format)
-            put("indies", "tort")
+            put("hit", adValue.format)
+            put("eruption", "ribald")
         }.toString()
     }
 
     private fun upPointJson(name: String): String {
         return topJsonData(BikerStart.gameApp).apply {
-            put("indies", name)
+            put("eruption", name)
         }.toString()
     }
 
@@ -157,9 +162,9 @@ object BikerUpData {
     ): String {
 
         return topJsonData(BikerStart.gameApp).apply {
-            put("indies", name)
+            put("eruption", name)
 
-            put("zebra", JSONObject().apply {
+            put("helix", JSONObject().apply {
                 if (key1 != null) {
                     put(key1, keyValue1)
                 }
@@ -329,7 +334,7 @@ object BikerUpData {
                     isProcessing = true
                     currentRetry++
 
-                    BikerStart.showLog("Ad: retryCount=$currentRetry")
+                    BikerStart.showLog("Point-${name}=$currentRetry")
 
                     // 计算随机延迟时间
                     val delayTime = Random.nextLong(10_000, 40_000)

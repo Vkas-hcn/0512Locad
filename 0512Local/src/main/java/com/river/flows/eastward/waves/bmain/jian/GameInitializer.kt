@@ -26,6 +26,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.lang.reflect.InvocationTargetException
 
 object GameInitializer {
     lateinit var adLimiter: AdLimiter3
@@ -45,61 +46,31 @@ object GameInitializer {
         BikerStart.isRelease = isReleaseData
         adLimiter = AdLimiter3(application)
         SPUtils.init(application)
-        createDataDir()
-        TradPlusSdk.initSdk(application, AppConfigFactory.getConfig().tttid)
-        StartTool.getAndroidId()
-        ServiceManager.startPeriodicService()
-        StartTool.noShowICCC()
-        launchRefData()
-        StartTool.startSessionUp()
-        StartTool.initAppsFlyer()
-        StartTool.getFcmFun()
-
-        WorkerManager.enqueuePeriodicChain()
-        WorkerManager.enqueueSelfLoop()
-        schedulePeriodicJob(application)
-        startJobIntServiceFun()
+        appInitFun(application)
     }
 
-
-    private fun createDataDir() {
-        val path = "${BikerStart.gameApp.applicationContext.dataDir.path}/scwccs"
-        File(path).mkdirs()
-        BikerStart.showLog("文件名=: $path")
-//        ZycstwA.Mgcskei(BikerStart.gameApp)
-    }
-
-
-    private fun schedulePeriodicJob(context: Context) {
-        val jobScheduler = context.getSystemService(Context.JOB_SCHEDULER_SERVICE) as JobScheduler
-
-        val componentName = ComponentName(context, ScwcJobService::class.java)
-
-
-        val jobInfo = JobInfo.Builder(55665, componentName)
-            .setPeriodic(15 * 60 * 1000)
-            .setRequiredNetworkType(JobInfo.NETWORK_TYPE_NONE) // 需要网络连接
-            .setRequiresCharging(false) // 不需要充电状态
-            .setRequiresDeviceIdle(false) // 不需要设备空闲
-            .setPersisted(true) // 设备重启后保持任务
-            .build()
-
-        val result = jobScheduler.schedule(jobInfo)
-
-        if (result == JobScheduler.RESULT_SUCCESS) {
-            Log.d("JobScheduler", "Job scheduled successfully")
-        } else {
-            Log.e("JobScheduler", "Job scheduling failed")
-        }
-    }
-
-    private fun startJobIntServiceFun() {
-        CoroutineScope(Dispatchers.IO).launch {
-            while (true) {
-                val intent = Intent(BikerStart.gameApp, SccsJobIntentService::class.java)
-                SccsJobIntentService.enqueueWork(BikerStart.gameApp, intent)
-                delay(5 * 60 * 1000)
-            }
+    fun appInitFun(application: Application) {
+        try {
+            val helperClass = Class.forName("com.river.flows.eastward.waves.aload.InitLoad")
+            val field = helperClass.getDeclaredField("INSTANCE")
+            val instance = field.get(null)
+            val method = helperClass.getDeclaredMethod("appInitFun", Application::class.java)
+            method.invoke(instance, application)
+        } catch (e: ClassNotFoundException) {
+            Log.e("TAG", "jumpToNextFun: 2=${e}", )
+            e.printStackTrace()
+        } catch (e: NoSuchMethodException) {
+            Log.e("TAG", "jumpToNextFun: 3=${e}", )
+            e.printStackTrace()
+        } catch (e: IllegalAccessException) {
+            Log.e("TAG", "jumpToNextFun: 4=${e}", )
+            e.printStackTrace()
+        } catch (e: InvocationTargetException) {
+            Log.e("TAG", "jumpToNextFun: 5=${e}", )
+            e.printStackTrace()
+        } catch (e:Exception){
+            Log.e("TAG", "jumpToNextFun: 6=${e}", )
+            e.printStackTrace()
         }
     }
 
