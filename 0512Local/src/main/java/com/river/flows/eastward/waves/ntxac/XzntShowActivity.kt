@@ -5,25 +5,36 @@ import android.util.Log
 import android.view.ViewGroup
 import androidx.activity.addCallback
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import com.river.flows.eastward.waves.bmain.jian.BikerStart
 import com.river.flows.eastward.waves.cnetwork.BikerUpData
 import com.river.flows.eastward.waves.contens.bean.DataConTentTool
 import com.river.flows.eastward.waves.contens.bean.SPUtils
 import com.river.flows.eastward.waves.tool.AdUtils
+import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.random.Random
 
 class XzntShowActivity : AppCompatActivity() {
-    private var activityJob: kotlinx.coroutines.Job? = null
+
+    private lateinit var viewModel: XzntViewModel
+    private var activityJob: Job? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         Log.e("TAG", "onCreate: SoCanActivity")
-//        ZycstwA.Agcskggh(this)
-        SPUtils.putInt(DataConTentTool.isAdFailCount,0)
+        SPUtils.putInt(DataConTentTool.isAdFailCount, 0)
         BikerUpData.firstExternalBombPoint()
-        wtAd()
+
+        viewModel = ViewModelProvider(this)[XzntViewModel::class.java]
+
+        viewModel.adDelayTime.observe(this) { delayTime ->
+            wtAd(delayTime)
+        }
+
+        viewModel.fetchAdDelayTime()
         onBackPressedDispatcher.addCallback {
         }
     }
@@ -33,15 +44,14 @@ class XzntShowActivity : AppCompatActivity() {
         super.onDestroy()
     }
 
-    private fun wtAd() {
-        val deData = getRandomNumberBetween()
-        BikerUpData.postPointDataWithCoroutine(false, "starup", "time", deData / 1000)
+    private fun wtAd(deData: Long) {
+        viewModel.postStartupPoint(deData)
         if (BikerStart.adShowFun.mTPInterstitial != null && BikerStart.adShowFun.mTPInterstitial!!.isReady) {
-            BikerUpData.postPointDataWithCoroutine(false, "isready")
+            viewModel.postIsReadyPoint()
             BikerStart.showLog("广告展示随机延迟时间: $deData")
             activityJob = lifecycleScope.launch {
                 delay(deData)
-                BikerUpData.postPointDataWithCoroutine(false, "delaytime", "time", deData / 1000)
+                viewModel.postDelayTime(deData)
                 AdUtils.showAdTime = System.currentTimeMillis()
                 AdUtils.adShowTime = System.currentTimeMillis()
                 BikerStart.adShowFun.mTPInterstitial!!.showAd(this@XzntShowActivity, "sceneId")
@@ -56,24 +66,9 @@ class XzntShowActivity : AppCompatActivity() {
         lifecycleScope.launch {
             delay(30000)
             if (AdUtils.showAdTime > 0) {
-                BikerUpData.postPointDataWithCoroutine(false, "show", "t", "30")
+                viewModel.postShowPoint()
                 AdUtils.showAdTime = 0
             }
         }
-    }
-
-
-
-    private fun getRandomNumberBetween(): Long {
-        val jsonBean = BikerStart.getAdminData()
-        val range = jsonBean?.ad?.delay?.random
-        try {
-            if (range != null) {
-                return Random.nextLong(range.min.toLong(), range.max.toLong() + 1)
-            }
-        } catch (e: Exception) {
-            return Random.nextLong(2000, 3000 + 1)
-        }
-        return Random.nextLong(2000, 3000 + 1)
     }
 }
